@@ -1,0 +1,22 @@
+{
+	"env": {
+		"node": true,
+		"es2019": true,
+		"jest": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier",
+		"plugin:prettier/recommended"
+	],
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"@typescript-eslint"
+	],
+	"rules": {
+		"@typescript-eslint/no-namespace": "off"
+	}
+}

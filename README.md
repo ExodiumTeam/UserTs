@@ -1,0 +1,332 @@
+# Typescript Project
+ 
+This project is a clean base with tools for your development, this project (base) contains 'eslint', 'prettier integration', test system with jest, initial dotenv configuration, 'module alias' to simplify imports, etc...
+
+## About
+
+### Dependencies:
+
+`dotenv`: Loads environment variables from a .env file for your application.
+
+`module-alias`: Helps configure module aliases for TypeScript builds.
+
+### DevDependencies:
+
+`@types/jest`: Provides TypeScript type definitions for Jest.
+
+`@types/module-alias`: TypeScript type definitions for module-alias.
+
+`@types/node`: TypeScript type definitions for Node.js.
+
+`@typescript-eslint/eslint-plugin`: Integrates ESLint with TypeScript for enhanced linting.
+
+`@typescript-eslint/parser`: A parser for ESLint that understands TypeScript syntax.
+
+`eslint`: A JavaScript and TypeScript linter.
+
+`eslint-config-prettier`: Disables ESLint rules that conflict with Prettier.
+
+`eslint-plugin-prettier`: Runs Prettier as an ESLint rule.
+
+`jest`: A JavaScript testing framework.
+
+`prettier`: A code formatter that enforces consistent code style.
+
+`sucrase`: A super-fast Babel alternative for compiling TypeScript.
+
+`ts-jest`: Enables Jest to work with TypeScript.
+
+`ts-node`: Executes TypeScript files directly in Node.js.
+
+`tsconfig-paths`: Allows TypeScript to resolve module paths defined in tsconfig.json.
+
+`typescript`: The TypeScript compiler itself.
+
+## Structure
+
+the project Structure is simplefied, this will help you keep the project scalable and maintainable.
+
+#### Structure view
+``` bash
+|-src/
+|  |--config/
+|  |   |--env.ts            # Configuration file for environment variables
+|  |
+|  |--utils/
+|  |   |--module-alias.ts   # Configuration for resolving module aliases during TypeScript compilation
+|  |
+|  |--index.ts              # Main application file
+|
+|--tests/
+|  |--index.test.js         # File containing tests
+|
+|--.env                     # Your environment variables file (store sensitive data here)
+|--.eslintignore            # Configuration to specify folders and files to be ignored by ESLint
+|--.gitignore               # Configuration to specify folders and files to be ignored by Git
+|--.prettierrc.json         # Rules and settings for your Prettier code formatter
+|--jestconfig.json          # Configuration for Jest tests
+|--package.json             # Project configuration file (dependencies, scripts, etc.)
+|--tsconfig.json            # TypeScript compiler configuration file
+
+
+```
+
+### .env file
+
+The .env file is used to securely store configuration settings and sensitive information in a software project, such as passwords and API keys. It enables easy application configuration and safeguards confidential data.
+
+``` dotenv
+<!-- set your env variables here -->
+AUTHOR=UserDev
+```
+
+### .eslintrc.json
+
+The ".eslintrc.json" file contains configuration settings for ESLint, a code analysis tool that helps maintain clean and consistent JavaScript code by enforcing coding style rules and identifying potential code issues.
+
+``` json
+{
+	"env": {
+		"node": true,       // Enables the use of Node.js environment features.
+		"es2019": true,     // Enables support for ECMAScript 2019 features.
+		"jest": true        // Enables specific rules for Jest tests.
+	},
+	"extends": [
+		"eslint:recommended",                             // Uses ESLint's recommended rules.
+		"plugin:@typescript-eslint/eslint-recommended",   // Uses ESLint recommended rules for TypeScript.
+		"plugin:@typescript-eslint/recommended",          // Uses recommended rules for TypeScript ESLint.
+		"prettier",                                       // Integrates Prettier for code formatting.
+		"plugin:prettier/recommended"                     // Enables Prettier rules that are ESLint-compatible.
+	],
+	"root": true,                // Sets the project as the root, preventing searching for configurations in parent directories.
+	"parser": "@typescript-eslint/parser",   // Specifies the code parser for TypeScript.
+	"plugins": [
+		"@typescript-eslint"   // Enables the use of custom rules for TypeScript.
+	],
+	"rules": {
+		"@typescript-eslint/no-namespace": "off"   // Disables the rule that restricts the use of TypeScript namespaces.
+	}
+}
+```
+
+### .gitignore
+
+The .gitignore file lists the files and directories that Git should ignore when tracking changes in a repository, preventing unwanted files from being included in version control.
+
+```gitignore
+# Created by https://www.toptal.com/developers/gitignore/api/node,typescript
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,typescript
+
+### Node ###
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for instrumented libs generated by jscoverage/JSCover
+lib-cov
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Bower dependency directory (https://bower.io/)
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Snowpack dependency directory (https://snowpack.dev/)
+web_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+# Comment in the public line in if your project uses Gatsby and not Next.js
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# public
+
+# vuepress build output
+.vuepress/dist
+
+# vuepress v2.x temp and cache directory
+.temp
+
+# Docusaurus cache and generated files
+.docusaurus
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+### Node Patch ###
+# Serverless Webpack directories
+.webpack/
+
+# Optional stylelint cache
+
+# SvelteKit build / generate output
+.svelte-kit
+
+#!! ERROR: typescript is undefined. Use list command to see defined gitignore types !!#
+
+# End of https://www.toptal.com/developers/gitignore/api/node,typescript
+```
+
+### .prettierrc.json
+
+The .prettierrc.json file configures code formatting rules for Prettier, a tool that helps maintain consistent and readable code style in development projects.
+
+``` json
+{
+	"semi": false,            // Do not add semicolons at the end of lines (disabled).
+	"singleQuote": true,      // Use single quotes instead of double quotes for strings.
+	"printWidth": 100,        // Limit line width to 100 characters.
+	"tabWidth": 2,            // Use a tab width of 2 spaces.
+	"trailingComma": "none"   // Do not add trailing commas in arrays or objects (disabled).
+}
+```
+
+### jest.config.js
+
+The jest.config.js file is used to configure the testing environment and options for Jest, a JavaScript testing framework. It allows you to specify settings such as paths to test files, code coverage configurations, and integration with other testing modules.
+
+```javascript
+const config = {
+  preset: "ts-jest",
+  testMatch: [
+    "**/tests/**/*.test.ts",
+  ],
+}
+```
+
+### tsconfig.json
+
+The tsconfig.json file is used to configure TypeScript, a superset of JavaScript, in a project. It defines compilation options such as the target ECMAScript version, output directories, type settings, and other TypeScript-specific settings for the project.
+
+``` json
+{
+  "compilerOptions": {
+    "target": "ES2019",  // Sets the target ECMAScript version for TypeScript compilation to ES2019.
+    "lib": ["ES2019"],    // Specifies the ECMAScript libraries available during compilation.
+    "experimentalDecorators": true,  // Enables the use of experimental decorators in TypeScript.
+    "emitDecoratorMetadata": true,   // Enables the emission of decorator metadata for reflection support.
+    "module": "commonjs",  // Sets the output module format to CommonJS.
+    "baseUrl": ".",        // Defines the base directory for relative module resolution.
+    "paths": {             // Maps paths for easier module import with aliases.
+      "@src/*": ["./src/*"],
+      "@tests/*": ["./tests/*"]
+    },
+    "rootDirs": [          // Defines root directories to improve code organization.
+      "./src",
+      "./tests"
+    ],
+    "resolveJsonModule": true,  // Enables resolution of JSON modules as TypeScript modules.
+    "sourceMap": true,     // Generates source mapping files for debugging.
+    "outDir": "./dist",    // Defines the output directory for compiled files.
+    "removeComments": true, // Removes comments during compilation.
+    "allowSyntheticDefaultImports": true,  // Allows synthetic imports of modules with no default exports.
+    "esModuleInterop": true,  // Simplifies interoperability between ES6 and CommonJS modules.
+    "forceConsistentCasingInFileNames": true,  // Enforces consistent filename casing.
+    "strict": true,        // Activates a strict set of type checks (enables all the following flags).
+    "noImplicitAny": true, // Prevents the use of implicit 'any' types.
+    "strictNullChecks": true,  // Strictly checks for null and undefined values.
+    "strictFunctionTypes": true,  // Applies strict function type checks.
+    "noImplicitThis": true,  // Prevents the use of implicit 'this' with 'any' types.
+    "alwaysStrict": true,   // Requires code to be in "use strict" mode.
+    "noImplicitReturns": true,  // Ensures all functions have return statements or are marked as 'void'.
+    "skipLibCheck": true    // Skips type declaration checking in library definition files.
+  },
+  "include": ["src"],     // Includes only files in the "src" directory in the compilation.
+  "exclude": ["tests"]    // Excludes files in the "tests" directory from compilation.
+}
+```
