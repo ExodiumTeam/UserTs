@@ -1,6 +1,6 @@
-export namespace NodeJS {
-  export interface ProcessEnv {
-    // dotenv variables tipe here
+declare namespace NodeJS {
+  interface ProcessEnv {
+    // dotenv variables types here
     AUTHOR: string
   }
 }
